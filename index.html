@@ -110,16 +110,28 @@
       alert("Time up!");
     }
   }, 1000);
+function checkAnswer(el, correct) {
+  // stop timer
+  clearInterval(timer);
 
-  function checkAnswer(el, correct) {
-    document.querySelectorAll(".option").forEach(o => o.onclick = null);
-    if (correct) {
-      el.classList.add("correct");
-    } else {
-      el.classList.add("wrong");
-      document.getElementById("explanation").style.display = "block";
-    }
+  // disable all options
+  document.querySelectorAll(".option").forEach(o => {
+    o.onclick = null;
+  });
+
+  if (correct) {
+    el.classList.add("correct");
+  } else {
+    el.classList.add("wrong");
+
+    // show correct answer
+    document.querySelectorAll(".option")[2].classList.add("correct");
+
+    // show explanation
+    document.getElementById("explanation").style.display = "block";
   }
+}
+  
 
   function nextQuestion() {
     alert("Next question logic later add হবে 🙂");
