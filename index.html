@@ -1,132 +1,85 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eduplexo | SSC 9–10 Smart Learning</title>
+  <meta charset="UTF-8">
+  <title>Eduplexo | SSC 9–10</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
 
-    body {
-      background: #f7f9fc;
-      color: #333;
-    }
+    body { background: #f6f9fc; color: #333; }
 
-    /* Header with wave */
     header {
-      position: relative;
-      padding: 70px 20px 120px;
-      background: linear-gradient(180deg, #2ECC71 0%, #4FA3F7 100%);
-      color: white;
+      background: linear-gradient(180deg, #2ECC71, #4FA3F7);
+      color: #fff;
       text-align: center;
-      overflow: hidden;
+      padding: 60px 20px 120px;
+      position: relative;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
+    header h1 { font-size: 2.4rem; }
+    header p { margin-top: 10px; opacity: .95; }
 
-    header p {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      opacity: 0.95;
-    }
-
-    /* Wave */
     .wave {
       position: absolute;
       bottom: 0;
-      left: 0;
       width: 100%;
     }
 
-    /* Main */
-    main {
-      padding: 40px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+    main { max-width: 1100px; margin: auto; padding: 30px 20px; }
 
-    .section-title {
+    .select-box {
+      background: #fff;
+      padding: 25px;
+      border-radius: 16px;
+      max-width: 420px;
+      margin: -80px auto 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.1);
       text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 30px;
-      font-weight: 600;
     }
 
-    /* Subject cards */
+    select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+
+    button {
+      background: linear-gradient(90deg, #2ECC71, #4FA3F7);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    h2 { text-align: center; margin-bottom: 25px; }
+
     .subjects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 20px;
     }
 
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 16px;
+      padding: 22px;
+      border-radius: 14px;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
-      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,.08);
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    .card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: #666;
-    }
-
-    /* CTA */
-    .cta {
-      margin-top: 60px;
-      background: white;
-      padding: 40px 20px;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
-
-    .cta h2 {
-      font-size: 1.6rem;
-      margin-bottom: 15px;
-    }
-
-    .cta button {
-      margin-top: 20px;
-      padding: 14px 32px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(90deg, #2ECC71, #4FA3F7);
-      color: white;
-      cursor: pointer;
-    }
+    .hidden { display: none; }
 
     footer {
       text-align: center;
       padding: 20px;
-      font-size: 0.9rem;
       color: #777;
+      font-size: .9rem;
     }
   </style>
 </head>
@@ -135,43 +88,54 @@
 
 <header>
   <h1>Eduplexo</h1>
-  <p>SSC 9–10 এর জন্য Smart MCQ Practice & Notes</p>
+  <p>SSC 9–10 Smart MCQ Practice Platform</p>
 
   <svg class="wave" viewBox="0 0 1440 100">
-    <path fill="#f7f9fc" d="M0,64L60,69.3C120,75,240,85,360,80C480,75,600,53,720,42.7C840,32,960,32,1080,42.7C1200,53,1320,75,1380,85.3L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+    <path fill="#f6f9fc"
+      d="M0,64L80,69C160,75,320,85,480,80C640,75,800,53,960,43C1120,32,1280,32,1360,37L1440,43V0H0Z">
+    </path>
   </svg>
 </header>
 
 <main>
 
-  <h2 class="section-title">Subjects (Class 9–10)</h2>
-
-  <div class="subjects">
-    <div class="card">
-      <h3>Physics</h3>
-      <p>Chapter wise MCQ & Explanation</p>
-    </div>
-
-    <div class="card">
-      <h3>Chemistry</h3>
-      <p>Smart practice with time</p>
-    </div>
-
-    <div class="card">
-      <h3>Biology</h3>
-      <p>Concept clear MCQ</p>
-    </div>
-
-    <div class="card">
-      <h3>Mathematics</h3>
-      <p>MCQ + Formula based</p>
-    </div>
+  <!-- Group Select -->
+  <div class="select-box">
+    <h3>Select Your Group</h3>
+    <select id="groupSelect">
+      <option value="">-- Choose Group --</option>
+      <option value="science">Science</option>
+      <option value="commerce">Commerce</option>
+      <option value="humanities">Humanities</option>
+    </select>
+    <button onclick="applyGroup()">Continue</button>
   </div>
 
-  <div class="cta">
-    <h2>আজই Practice শুরু করো 🚀</h2>
-    <p>Login করলে extra feature & coin system unlock হবে</p>
-    <button>Start Practice</button>
+  <h2>Subjects</h2>
+
+  <div class="subjects">
+
+    <!-- Science -->
+    <div class="card science">Physics</div>
+    <div class="card science">Chemistry</div>
+    <div class="card science">Biology</div>
+    <div class="card science">Higher Mathematics</div>
+
+    <!-- Commerce -->
+    <div class="card commerce">Business Entrepreneurship</div>
+    <div class="card commerce">Finance & Banking</div>
+    <div class="card commerce">Accounting</div>
+
+    <!-- Humanities -->
+    <div class="card humanities">Geography & Environment</div>
+    <div class="card humanities">Civics & Citizenship</div>
+    <div class="card humanities">Economics</div>
+    <div class="card humanities">History</div>
+
+    <!-- Common -->
+    <div class="card science commerce humanities">General Mathematics</div>
+    <div class="card science commerce humanities">ICT</div>
+
   </div>
 
 </main>
@@ -179,6 +143,28 @@
 <footer>
   © 2025 Eduplexo • Made for SSC Students 🇧🇩
 </footer>
+
+<script>
+  function applyGroup() {
+    const group = document.getElementById("groupSelect").value;
+    if (!group) return alert("Please select a group");
+
+    localStorage.setItem("eduGroup", group);
+    filterSubjects(group);
+  }
+
+  function filterSubjects(group) {
+    document.querySelectorAll(".card").forEach(card => {
+      card.classList.add("hidden");
+      if (card.classList.contains(group)) {
+        card.classList.remove("hidden");
+      }
+    });
+  }
+
+  const savedGroup = localStorage.getItem("eduGroup");
+  if (savedGroup) filterSubjects(savedGroup);
+</script>
 
 </body>
 </html>
