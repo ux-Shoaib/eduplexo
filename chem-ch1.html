@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Chemistry Chapter 1 – Eduplexo</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f5f7fa;
+  padding:20px;
+}
+.mcq-box{
+  background:#fff;
+  border-radius:8px;
+  padding:15px;
+  margin-bottom:20px;
+}
+button{
+  width:100%;
+  padding:10px;
+  margin:5px 0;
+  border:none;
+  border-radius:5px;
+  background:#4FA3F7;
+  color:white;
+  font-size:16px;
+}
+.explanation{
+  display:none;
+  margin-top:10px;
+  color:#333;
+}
+a{
+  display:inline-block;
+  margin-bottom:15px;
+  text-decoration:none;
+  color:#2ECC71;
+}
+</style>
+</head>
+
+<body>
+
+<a href="index.html">⬅ Back to Home</a>
+
+<h2>রসায়ন – অধ্যায় ১ : রসায়নের ধারণা</h2>
+
+<div class="mcq-box">
+<h3>রসায়ন কী নিয়ে আলোচনা করে?</h3>
+
+<button onclick="checkAnswer(this,false)">A. জীবনের উৎপত্তি</button>
+<button onclick="checkAnswer(this,true)">B. পদার্থের গঠন, ধর্ম ও পরিবর্তন</button>
+<button onclick="checkAnswer(this,false)">C. শক্তির রূপান্তর</button>
+<button onclick="checkAnswer(this,false)">D. মহাকাশ</button>
+
+<p class="explanation">
+✔ সঠিক উত্তর: B <br>
+রসায়ন হলো পদার্থের গঠন, ধর্ম ও পরিবর্তন নিয়ে বিজ্ঞান।
+</p>
+</div>
+
+<script>
+function checkAnswer(btn, correct){
+  const box = btn.parentElement;
+  box.querySelectorAll("button").forEach(b => b.disabled = true);
+  btn.style.background = correct ? "#2ECC71" : "#E74C3C";
+  box.querySelector(".explanation").style.display = "block";
+}
+</script>
+
+</body>
+</html>
