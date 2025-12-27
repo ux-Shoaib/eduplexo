@@ -1,197 +1,209 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Eduplexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>Eduplexo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-    }
-    .screen {
-      display: none;
-      padding: 30px 15px;
-      text-align: center;
-    }
-    .active {
-      display: block;
-    }
-    .card {
-      background: white;
-      max-width: 420px;
-      margin: auto;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    input, select, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 12px;
-      font-size: 16px;
-    }
-    button {
-      background: #2ECC71;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button.secondary {
-      background: #4FA3F7;
-    }
-    h3 {
-      margin-top: 25px;
-      color: #333;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#f5f7fb;
+}
+
+header{
+  background:#2ECC71;
+  color:#fff;
+  padding:25px;
+  text-align:center;
+  font-size:22px;
+  font-weight:600;
+}
+
+.wave{
+  position:relative;
+  height:80px;
+  background:#2ECC71;
+}
+.wave svg{
+  position:absolute;
+  bottom:0;
+}
+
+.container{
+  padding:20px;
+  max-width:420px;
+  margin:auto;
+}
+
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  margin-bottom:20px;
+}
+
+.hidden{display:none;}
+
+input,select,button{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:15px;
+}
+
+button{
+  background:#4FA3F7;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+
+button:hover{opacity:.9}
+
+.subject{
+  padding:12px;
+  border-radius:10px;
+  background:#f0f4ff;
+  margin-top:10px;
+  cursor:pointer;
+}
+.subject:hover{
+  background:#4FA3F7;
+  color:#fff;
+}
+</style>
 </head>
 
 <body>
 
-<!-- ===== SCREEN 1 : NAME + BATCH + GROUP ===== -->
-<div id="screen1" class="screen active">
-  <div class="card">
-    <h2>Eduplexo</h2>
-    <p>শুরু করতে তথ্য দাও</p>
+<header>Eduplexo</header>
 
-    <input type="text" id="name" placeholder="তোমার নাম">
-
-    <select id="batch">
-      <option value="">SSC Batch নির্বাচন করো</option>
-      <option>SSC 2026</option>
-      <option>SSC 2027</option>
-      <option>SSC 2028</option>
-    </select>
-
-    <select id="group">
-      <option value="">Group নির্বাচন করো</option>
-      <option>Science</option>
-      <option>Commerce</option>
-      <option>Humanities</option>
-    </select>
-
-    <button onclick="goToLogin()">Continue</button>
-  </div>
+<div class="wave">
+<svg viewBox="0 0 1440 90">
+<path fill="#4FA3F7" d="M0,40 C120,80 240,0 360,20 480,40 600,80 720,60 840,40 960,0 1080,10 1200,20 1320,40 1440,30 L1440,0 L0,0 Z"></path>
+</svg>
 </div>
 
-<!-- ===== SCREEN 2 : LOGIN / SKIP ===== -->
-<div id="screen2" class="screen">
-  <div class="card">
-    <h2>Login অথবা Skip</h2>
-    <button onclick="goToSubjects()">Skip for now</button>
-  </div>
+<div class="container">
+
+<!-- STEP 1 -->
+<div class="card" id="step-name">
+  <h3>তোমার নাম লিখো</h3>
+  <input id="username" placeholder="Your Name">
+  <button onclick="goBatch()">Next</button>
 </div>
 
-<!-- ===== SCREEN 3 : SUBJECT SELECTION ===== -->
-<div id="screen3" class="screen">
-  <div class="card">
-    <h2>বিষয় নির্বাচন করো</h2>
-    <div id="subjectList"></div>
-    <button class="secondary" onclick="backToLogin()">Back</button>
-  </div>
+<!-- STEP 2 -->
+<div class="card hidden" id="step-batch">
+  <h3>SSC Batch নির্বাচন করো</h3>
+  <select id="batch">
+    <option value="">Select Batch</option>
+    <option>SSC 2026</option>
+    <option>SSC 2027</option>
+    <option>SSC 2028</option>
+  </select>
+  <button onclick="goGroup()">Next</button>
 </div>
 
-<!-- ===== SCREEN 4 : CHAPTER LIST ===== -->
-<div id="screen4" class="screen">
-  <div class="card">
-    <h2 id="chapterTitle"></h2>
-    <div id="chapterList"></div>
-    <button class="secondary" onclick="backToSubjects()">Back</button>
-  </div>
+<!-- STEP 3 -->
+<div class="card hidden" id="step-group">
+  <h3>Group নির্বাচন করো</h3>
+  <select id="group">
+    <option value="">Select Group</option>
+    <option>Science</option>
+    <option>Commerce</option>
+    <option>Humanities</option>
+  </select>
+  <button onclick="goLogin()">Next</button>
+</div>
+
+<!-- STEP 4 -->
+<div class="card hidden" id="step-login">
+  <h3>Login করো</h3>
+  <button onclick="goSubjects()">Login with Google</button>
+  <button style="margin-top:10px;background:#aaa" onclick="goSubjects()">Skip</button>
+</div>
+
+<!-- STEP 5 -->
+<div class="card hidden" id="step-subjects">
+  <h3>Subjects</h3>
+  <div id="subjectList"></div>
+</div>
+
+<!-- STEP 6 -->
+<div class="card hidden" id="step-chapters">
+  <h3 id="chapterTitle"></h3>
+  <p>এখানে পরে chapter wise MCQ বসবে</p>
+</div>
+
 </div>
 
 <script>
-  let userGroup = "";
+const stepName = document.getElementById("step-name");
+const stepBatch = document.getElementById("step-batch");
+const stepGroup = document.getElementById("step-group");
+const stepLogin = document.getElementById("step-login");
+const stepSubjects = document.getElementById("step-subjects");
+const stepChapters = document.getElementById("step-chapters");
 
-  function goToLogin() {
-    userGroup = document.getElementById("group").value;
-    if (userGroup === "") {
-      alert("Group নির্বাচন করো");
-      return;
-    }
-    document.getElementById("screen1").classList.remove("active");
-    document.getElementById("screen2").classList.add("active");
-  }
+function goBatch(){
+  if(username.value==="") return alert("নাম লেখো");
+  stepName.classList.add("hidden");
+  stepBatch.classList.remove("hidden");
+}
 
-  function goToSubjects() {
-    document.getElementById("screen2").classList.remove("active");
-    document.getElementById("screen3").classList.add("active");
-    loadSubjects();
-  }
+function goGroup(){
+  if(batch.value==="") return alert("Batch select করো");
+  stepBatch.classList.add("hidden");
+  stepGroup.classList.remove("hidden");
+}
 
-  function backToLogin() {
-    document.getElementById("screen3").classList.remove("active");
-    document.getElementById("screen2").classList.add("active");
-  }
+function goLogin(){
+  if(group.value==="") return alert("Group select করো");
+  stepGroup.classList.add("hidden");
+  stepLogin.classList.remove("hidden");
+}
 
-  function backToSubjects() {
-    document.getElementById("screen4").classList.remove("active");
-    document.getElementById("screen3").classList.add("active");
-  }
+function goSubjects(){
+  stepLogin.classList.add("hidden");
+  stepSubjects.classList.remove("hidden");
+  loadSubjects();
+}
 
-  function loadSubjects() {
-    const generalSubjects = [
-      "বাংলা ১ম পত্র",
-      "বাংলা ২য় পত্র",
-      "English 1st Paper",
-      "English 2nd Paper",
-      "General Mathematics",
-      "ICT"
-      "বাংলাদেশ ও বিশ্বপরিচয় (BGS)",
-    ];
+function loadSubjects(){
+  const general = [
+    "বাংলা ১ম পত্র","বাংলা ২য় পত্র",
+    "English 1st Paper","English 2nd Paper",
+    "General Mathematics","ICT",
+    "বাংলাদেশ ও বিশ্বপরিচয় (BGS)"
+  ];
 
-    const groupSubjects = {
-      Science: [
-        "Physics",
-        "Chemistry",
-        "Biology",
-        "Higher Mathematics"
-      ],
-      Commerce: [
-        "Accounting",
-        "Finance & Banking",
-        "Business Entrepreneurship"
-      ],
-      Humanities: [
-        "History of Bangladesh & World Civilization",
-        "Civics & Citizenship",
-        "Geography & Environment",
-        "Economics"
-      ]
-    };
+  const science = ["Physics","Chemistry","Biology","Higher Mathematics"];
+  const commerce = ["Accounting","Finance & Banking","Business Entrepreneurship"];
+  const humanities = ["Geography","Civics","Economics","History"];
 
-    let html = "<h3>General Subjects</h3>";
+  let all = [...general];
+  if(group.value==="Science") all.push(...science);
+  if(group.value==="Commerce") all.push(...commerce);
+  if(group.value==="Humanities") all.push(...humanities);
 
-    generalSubjects.forEach(sub => {
-      html += `<button onclick="openChapters('${sub}')">${sub}</button><br><br>`;
-    });
+  subjectList.innerHTML="";
+  all.forEach(s=>{
+    subjectList.innerHTML+=`<div class="subject" onclick="openChapters('${s}')">${s}</div>`;
+  });
+}
 
-    html += "<h3>Group Subjects</h3>";
-
-    groupSubjects[userGroup].forEach(sub => {
-      html += `<button onclick="openChapters('${sub}')">${sub}</button><br><br>`;
-    });
-
-    document.getElementById("subjectList").innerHTML = html;
-  }
-
-  function openChapters(subject) {
-    document.getElementById("screen3").classList.remove("active");
-    document.getElementById("screen4").classList.add("active");
-
-    document.getElementById("chapterTitle").innerText = subject + " - Chapters";
-
-    document.getElementById("chapterList").innerHTML = `
-      <p>অধ্যায় ১</p>
-      <p>অধ্যায় ২</p>
-      <p>অধ্যায় ৩</p>
-      <p style="color:gray;">(MCQ পরে যোগ হবে)</p>
-    `;
-  }
+function openChapters(sub){
+  stepSubjects.classList.add("hidden");
+  stepChapters.classList.remove("hidden");
+  chapterTitle.innerText = sub + " - Chapters";
+}
 </script>
 
 </body>
