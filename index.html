@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Eduplexo | SSC 9–10 Smart Learning</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Poppins',sans-serif;
+  font-size:16px;
+  background:#f5f7fa;
+}
+
+/* HEADER */
+header{
+  background:#2ECC71;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.logo{color:#fff;font-size:24px;font-weight:700}
+nav a{color:#fff;margin-left:20px;text-decoration:none}
+
+/* HERO */
+.hero{
+  background:#2ECC71;
+  color:#fff;
+  text-align:center;
+  padding:70px 20px;
+}
+.hero h1{font-size:40px;font-weight:600}
+.hero p{font-size:18px;margin:15px 0}
+.hero button{
+  margin:10px;
+  padding:12px 22px;
+  border:none;
+  border-radius:8px;
+  font-size:15px;
+  cursor:pointer;
+}
+.btn-primary{background:#fff;color:#2ECC71}
+.btn-secondary{background:#27ae60;color:#fff}
+
+/* WAVE */
+.wave svg{display:block;width:100%;height:120px}
+
+/* ENTRY */
+.entry{
+  background:#4FA3F7;
+  padding:60px 20px;
+  display:flex;
+  justify-content:center;
+}
+.card{
+  background:#fff;
+  padding:30px;
+  border-radius:12px;
+  width:320px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+.card h2{font-size:26px;margin-bottom:15px}
+.card input,.card select{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border:1px solid #ddd;
+  border-radius:6px;
+}
+.card button{
+  width:100%;
+  background:#2ECC71;
+  color:#fff;
+  margin-top:10px;
+}
+.skip{margin-top:12px;font-size:14px;color:#777;cursor:pointer}
+
+/* FEATURES */
+.features{
+  background:#4FA3F7;
+  padding:50px 20px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.feature-card{
+  background:#fff;
+  width:230px;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  transition:.3s;
+}
+.feature-card:hover{transform:translateY(-5px)}
+.feature-card h3{font-size:21px;margin-bottom:10px}
+
+/* FOOTER */
+footer{
+  background:#222;
+  color:#fff;
+  text-align:center;
+  padding:15px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Eduplexo</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Subjects</a>
+    <a href="#">Leaderboard</a>
+    <a href="#">Login</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>SSC 9–10 Smart MCQ & Exam Practice</h1>
+  <p>Practice • Compete • Improve</p>
+  <button class="btn-primary">Start Practice</button>
+  <button class="btn-secondary">Challenge a Friend</button>
+</section>
+
+<div class="wave">
+<svg viewBox="0 0 1440 150" preserveAspectRatio="none">
+<path fill="#4FA3F7"
+d="M0,64L80,80C160,96,320,128,480,133C640,139,800,117,960,96C1120,75,1280,53,1360,43L1440,32L1440,0L0,0Z">
+</path>
+</svg>
+</div>
+
+<section class="entry">
+  <div class="card">
+    <h2>Get Started</h2>
+    <input id="name" type="text" placeholder="Enter your name">
+    <select id="batch">
+      <option value="">Select SSC Batch</option>
+      <option>SSC 26</option>
+      <option>SSC 27</option>
+      <option>SSC 28</option>
+    </select>
+    <select id="group">
+      <option value="">Select Group</option>
+      <option>Science</option>
+      <option>Commerce</option>
+      <option>Humanities</option>
+    </select>
+    <button onclick="saveData()">Continue</button>
+    <div class="skip" onclick="skip()">Skip for limited access</div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="feature-card">
+    <h3>MCQ Exam</h3>
+    <p>Chapter-wise & mixed MCQ with explanation.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Friend VS</h3>
+    <p>Challenge friends & win coins.</p>
+  </div>
+  <div class="feature-card">
+    <h3>Notes & Formula</h3>
+    <p>View free, download with account.</p>
+  </div>
+</section>
+
+<footer>
+  © 2025 Eduplexo.com | Smart Learning for SSC
+</footer>
+
+<!-- ================== JAVASCRIPT ================== -->
+<script>
+function saveData(){
+  const name = document.getElementById("name").value;
+  const batch = document.getElementById("batch").value;
+  const group = document.getElementById("group").value;
+
+  if(name === "" || batch === "" || group === ""){
+    alert("Please fill all fields");
+    return;
+  }
+
+  localStorage.setItem("edu_name", name);
+  localStorage.setItem("edu_batch", batch);
+  localStorage.setItem("edu_group", group);
+
+  alert("Welcome " + name + "! Data saved successfully.");
+}
+
+function skip(){
+  alert("You are using limited free access.");
+}
+</script>
+
+</body>
+</html>
