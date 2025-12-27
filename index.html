@@ -2,84 +2,71 @@
 <html lang="bn">
 <head>
   <meta charset="UTF-8">
-  <title>Eduplexo | SSC 9–10</title>
+  <title>Eduplexo | MCQ Practice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
-
-    body { background: #f6f9fc; color: #333; }
+    body { background: #f6f9fc; }
 
     header {
       background: linear-gradient(180deg, #2ECC71, #4FA3F7);
       color: #fff;
+      padding: 40px 20px;
       text-align: center;
-      padding: 60px 20px 120px;
-      position: relative;
     }
 
-    header h1 { font-size: 2.4rem; }
-    header p { margin-top: 10px; opacity: .95; }
-
-    .wave {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-    }
-
-    main { max-width: 1100px; margin: auto; padding: 30px 20px; }
-
-    .select-box {
+    main {
+      max-width: 700px;
+      margin: 30px auto;
       background: #fff;
-      padding: 25px;
+      padding: 30px;
       border-radius: 16px;
-      max-width: 420px;
-      margin: -80px auto 40px;
       box-shadow: 0 10px 25px rgba(0,0,0,.1);
-      text-align: center;
     }
 
-    select, button {
-      width: 100%;
+    .timer {
+      text-align: right;
+      font-weight: 600;
+      color: #e74c3c;
+    }
+
+    h2 {
+      margin: 20px 0;
+      font-size: 1.2rem;
+    }
+
+    .option {
+      margin: 12px 0;
       padding: 12px;
-      margin-top: 12px;
-      border-radius: 8px;
       border: 1px solid #ddd;
-      font-size: 1rem;
-    }
-
-    button {
-      background: linear-gradient(90deg, #2ECC71, #4FA3F7);
-      color: white;
-      border: none;
+      border-radius: 8px;
       cursor: pointer;
     }
 
-    h2 { text-align: center; margin-bottom: 25px; }
+    .option:hover { background: #f0f8ff; }
 
-    .subjects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+    .correct { background: #d4edda; border-color: #28a745; }
+    .wrong { background: #f8d7da; border-color: #dc3545; }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #2ECC71, #4FA3F7);
+      color: #fff;
+      cursor: pointer;
     }
 
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 14px;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,.08);
-    }
-
-    .hidden { display: none; }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #777;
-      font-size: .9rem;
+    .explanation {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f1f3f5;
+      border-radius: 10px;
+      display: none;
     }
   </style>
 </head>
@@ -88,86 +75,55 @@
 
 <header>
   <h1>Eduplexo</h1>
-  <p>SSC 9–10 Smart MCQ Practice Platform</p>
-
-  <svg class="wave" viewBox="0 0 1440 100">
-    <path fill="#f6f9fc"
-      d="M0,64L80,69C160,75,320,85,480,80C640,75,800,53,960,43C1120,32,1280,32,1360,37L1440,43V0H0Z">
-    </path>
-  </svg>
+  <p>MCQ Practice (Demo)</p>
 </header>
 
 <main>
 
-  <!-- Group Select -->
-  <div class="select-box">
-    <h3>Select Your Group</h3>
-    <select id="groupSelect">
-      <option value="">-- Choose Group --</option>
-      <option value="science">Science</option>
-      <option value="commerce">Commerce</option>
-      <option value="humanities">Humanities</option>
-    </select>
-    <button onclick="applyGroup()">Continue</button>
+  <div class="timer">⏱ Time Left: <span id="time">30</span>s</div>
+
+  <h2 id="question">
+    1️⃣ আলোর বেগ কত?
+  </h2>
+
+  <div class="option" onclick="checkAnswer(this, false)">A. 3×10⁶ m/s</div>
+  <div class="option" onclick="checkAnswer(this, false)">B. 3×10⁷ m/s</div>
+  <div class="option" onclick="checkAnswer(this, true)">C. 3×10⁸ m/s</div>
+  <div class="option" onclick="checkAnswer(this, false)">D. 3×10⁹ m/s</div>
+
+  <div class="explanation" id="explanation">
+    ✅ সঠিক উত্তর: <b>3×10⁸ m/s</b><br><br>
+    Explanation: শূন্য মাধ্যমে আলোর বেগ প্রায় 3×10⁸ m/s।
   </div>
 
-  <h2>Subjects</h2>
-
-  <div class="subjects">
-
-    <!-- Science -->
-    <div class="card science">Physics</div>
-    <div class="card science">Chemistry</div>
-    <div class="card science">Biology</div>
-    <div class="card science">Higher Mathematics</div>
-
-    <!-- Commerce -->
-    <div class="card commerce">Business Entrepreneurship</div>
-    <div class="card commerce">Finance & Banking</div>
-    <div class="card commerce">Accounting</div>
-
-    <!-- Humanities -->
-    <div class="card humanities">Geography & Environment</div>
-    <div class="card humanities">Civics & Citizenship</div>
-    <div class="card humanities">Economics</div>
-    <div class="card humanities">History</div>
-
-    <!-- Common -->
-    <div class="card science commerce humanities">General Mathematics</div>
-    <div class="card science commerce humanities">ICT</div>
-
-  </div>
+  <button onclick="nextQuestion()">Next Question</button>
 
 </main>
 
-<footer>
-  © 2025 Eduplexo • Made for SSC Students 🇧🇩
-</footer>
-
 <script>
-  function applyGroup() {
-    const group = document.getElementById("groupSelect").value;
-    if (!group) return alert("Please select a group");
+  let time = 30;
+  let timer = setInterval(() => {
+    time--;
+    document.getElementById("time").innerText = time;
+    if (time === 0) {
+      clearInterval(timer);
+      alert("Time up!");
+    }
+  }, 1000);
 
-    localStorage.setItem("eduGroup", group);
-    filterSubjects(group);
+  function checkAnswer(el, correct) {
+    document.querySelectorAll(".option").forEach(o => o.onclick = null);
+    if (correct) {
+      el.classList.add("correct");
+    } else {
+      el.classList.add("wrong");
+      document.getElementById("explanation").style.display = "block";
+    }
   }
 
-  function filterSubjects(group) {
-    document.querySelectorAll(".card").forEach(card => {
-      card.classList.add("hidden");
-      if (card.classList.contains(group)) {
-        card.classList.remove("hidden");
-      }
-    });
+  function nextQuestion() {
+    alert("Next question logic later add হবে 🙂");
   }
-
-  const savedGroup = localStorage.getItem("eduGroup");
-
-if (savedGroup) {
-  document.getElementById("groupSelect").value = savedGroup;
-  filterSubjects(savedGroup);
-}
 </script>
 
 </body>
