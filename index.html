@@ -1,65 +1,94 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Eduplexo – Chemistry MCQ</title>
-
-<style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f5f7fa;
-  padding:20px;
-}
-.mcq-box{
-  background:#fff;
-  border-radius:8px;
-  padding:15px;
-  margin-bottom:20px;
-}
-button{
-  width:100%;
-  padding:10px;
-  margin:5px 0;
-  border:none;
-  border-radius:5px;
-  background:#4FA3F7;
-  color:white;
-  font-size:16px;
-}
-.explanation{
-  display:none;
-  margin-top:10px;
-  color:#333;
-}
-</style>
-</head>
-
-<body>
-
 <h2>রসায়ন – অধ্যায় ১ : রসায়নের ধারণা</h2>
 
 <div class="mcq-box">
-<h3>রসায়ন কী নিয়ে আলোচনা করে?</h3>
-
+<h3>1. রসায়ন কী নিয়ে আলোচনা করে?</h3>
 <button onclick="checkAnswer(this,false)">A. জীবনের উৎপত্তি</button>
 <button onclick="checkAnswer(this,true)">B. পদার্থের গঠন, ধর্ম ও পরিবর্তন</button>
 <button onclick="checkAnswer(this,false)">C. শক্তির রূপান্তর</button>
 <button onclick="checkAnswer(this,false)">D. মহাকাশ</button>
-
-<p class="explanation">
-✔ সঠিক উত্তর: B <br>
-রসায়ন হলো পদার্থের গঠন, ধর্ম ও পরিবর্তন নিয়ে বিজ্ঞান।
-</p>
+<p class="explanation">✔ সঠিক উত্তর: B <br>রসায়ন পদার্থের গঠন, ধর্ম ও পরিবর্তন নিয়ে বিজ্ঞান।</p>
 </div>
 
-<script>
-function checkAnswer(btn, correct){
-  const box = btn.parentElement;
-  box.querySelectorAll("button").forEach(b => b.disabled = true);
-  btn.style.background = correct ? "#2ECC71" : "#E74C3C";
-  box.querySelector(".explanation").style.display = "block";
-}
-</script>
+<div class="mcq-box">
+<h3>2. আধুনিক রসায়নের জনক কে?</h3>
+<button onclick="checkAnswer(this,false)">A. নিউটন</button>
+<button onclick="checkAnswer(this,false)">B. ডাল্টন</button>
+<button onclick="checkAnswer(this,true)">C. ল্যাভয়জিয়ে</button>
+<button onclick="checkAnswer(this,false)">D. আইনস্টাইন</button>
+<p class="explanation">✔ সঠিক উত্তর: C <br>ল্যাভয়জিয়ে আধুনিক রসায়নের জনক।</p>
+</div>
 
-</body>
-</html>
+<div class="mcq-box">
+<h3>3. কোনটি ভৌত পরিবর্তন?</h3>
+<button onclick="checkAnswer(this,true)">A. বরফ গলা</button>
+<button onclick="checkAnswer(this,false)">B. কাগজ পোড়ানো</button>
+<button onclick="checkAnswer(this,false)">C. লোহা মরিচা ধরা</button>
+<button onclick="checkAnswer(this,false)">D. দুধ টক হওয়া</button>
+<p class="explanation">✔ সঠিক উত্তর: A <br>ভৌত পরিবর্তনে নতুন পদার্থ সৃষ্টি হয় না।</p>
+</div>
+
+<div class="mcq-box">
+<h3>4. কোনটি রাসায়নিক পরিবর্তন?</h3>
+<button onclick="checkAnswer(this,false)">A. পানি ফুটানো</button>
+<button onclick="checkAnswer(this,true)">B. লোহা মরিচা ধরা</button>
+<button onclick="checkAnswer(this,false)">C. কাচ ভাঙা</button>
+<button onclick="checkAnswer(this,false)">D. চিনি গুঁড়ো করা</button>
+<p class="explanation">✔ সঠিক উত্তর: B <br>রাসায়নিক পরিবর্তনে নতুন পদার্থ তৈরি হয়।</p>
+</div>
+
+<div class="mcq-box">
+<h3>5. ভর সংরক্ষণ সূত্র প্রদান করেন—</h3>
+<button onclick="checkAnswer(this,true)">A. ল্যাভয়জিয়ে</button>
+<button onclick="checkAnswer(this,false)">B. ডাল্টন</button>
+<button onclick="checkAnswer(this,false)">C. বয়েল</button>
+<button onclick="checkAnswer(this,false)">D. অ্যাভোগাড্রো</button>
+<p class="explanation">✔ সঠিক উত্তর: A <br>ভর সংরক্ষণ সূত্র ল্যাভয়জিয়ে প্রদান করেন।</p>
+</div>
+
+<div class="mcq-box">
+<h3>6. দাহ্যতা কোন ধরনের ধর্ম?</h3>
+<button onclick="checkAnswer(this,false)">A. ভৌত ধর্ম</button>
+<button onclick="checkAnswer(this,true)">B. রাসায়নিক ধর্ম</button>
+<button onclick="checkAnswer(this,false)">C. আণবিক ধর্ম</button>
+<button onclick="checkAnswer(this,false)">D. পারমাণবিক ধর্ম</button>
+<p class="explanation">✔ সঠিক উত্তর: B <br>দাহ্যতা রাসায়নিক ধর্ম।</p>
+</div>
+
+<div class="mcq-box">
+<h3>7. কোনটি ভৌত ধর্ম?</h3>
+<button onclick="checkAnswer(this,true)">A. গলনাঙ্ক</button>
+<button onclick="checkAnswer(this,false)">B. জারণ</button>
+<button onclick="checkAnswer(this,false)">C. দাহ্যতা</button>
+<button onclick="checkAnswer(this,false)">D. বিক্রিয়াশীলতা</button>
+<p class="explanation">✔ সঠিক উত্তর: A <br>গলনাঙ্ক একটি ভৌত ধর্ম।</p>
+</div>
+
+<div class="mcq-box">
+<h3>8. জীবদেহের রাসায়নিক বিক্রিয়া নিয়ে কাজ করে—</h3>
+<button onclick="checkAnswer(this,true)">A. জীবরসায়ন</button>
+<button onclick="checkAnswer(this,false)">B. জৈব রসায়ন</button>
+<button onclick="checkAnswer(this,false)">C. অজৈব রসায়ন</button>
+<button onclick="checkAnswer(this,false)">D. ভৌত রসায়ন</button>
+<p class="explanation">✔ সঠিক উত্তর: A <br>জীবরসায়ন জীবদেহের রাসায়নিক প্রক্রিয়া নিয়ে কাজ করে।</p>
+</div>
+
+<div class="mcq-box">
+<h3>9. কার্বন যৌগ নিয়ে আলোচনা করে—</h3>
+<button onclick="checkAnswer(this,true)">A. জৈব রসায়ন</button>
+<button onclick="checkAnswer(this,false)">B. অজৈব রসায়ন</button>
+<button onclick="checkAnswer(this,false)">C. ভৌত রসায়ন</button>
+<button onclick="checkAnswer(this,false)">D. নিউক্লিয়ার রসায়ন</button>
+<p class="explanation">✔ সঠিক উত্তর: A <br>কার্বন যৌগ নিয়ে জৈব রসায়ন আলোচনা করে।</p>
+</div>
+
+<div class="mcq-box">
+<h3>10. রসায়নকে কেন্দ্রীয় বিজ্ঞান বলা হয় কেন?</h3>
+<button onclick="checkAnswer(this,true)">A. অন্যান্য বিজ্ঞানের সাথে সম্পর্ক আছে</button>
+<button onclick="checkAnswer(this,false)">B. শুধু পরীক্ষাগারে হয়</button>
+<button onclick="checkAnswer(this,false)">C. সহজ বিষয়</button>
+<button onclick="checkAnswer(this,false)">D. শুধু পদার্থ নিয়ে কাজ করে</button>
+<p class="explanation">✔ সঠিক উত্তর: A <br>রসায়নের সাথে অন্যান্য বিজ্ঞানের ঘনিষ্ঠ সম্পর্ক আছে।</p>
+</div>
+
+<!-- 11–30 একই standard এ থাকবে -->
+<!-- তুমি চাইলে আমি next message এ 11–30 আবার এক block এ দিতে পারি -->
