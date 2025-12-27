@@ -1,169 +1,64 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Eduplexo | MCQ Exam</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Eduplexo – Chemistry MCQ</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#f6f9fc}
-header{
-  background:linear-gradient(180deg,#2ECC71,#4FA3F7);
-  color:#fff;
-  text-align:center;
-  padding:40px 20px;
+body{
+  font-family: Arial, sans-serif;
+  background:#f5f7fa;
+  padding:20px;
 }
-main{
-  max-width:700px;
-  margin:30px auto;
+.mcq-box{
   background:#fff;
-  padding:25px;
-  border-radius:16px;
-  box-shadow:0 10px 25px rgba(0,0,0,.1)
-}
-.timer{text-align:right;color:#e74c3c;font-weight:600}
-.option{
-  border:1px solid #ddd;
-  padding:12px;
-  margin:10px 0;
   border-radius:8px;
-  cursor:pointer
+  padding:15px;
+  margin-bottom:20px;
 }
-.option:hover{background:#f0f8ff}
-.correct{background:#d4edda;border-color:#28a745}
-.wrong{background:#f8d7da;border-color:#dc3545}
 button{
-  margin-top:20px;
-  padding:12px 25px;
+  width:100%;
+  padding:10px;
+  margin:5px 0;
   border:none;
-  border-radius:30px;
-  background:linear-gradient(90deg,#2ECC71,#4FA3F7);
-  color:#fff;
-  cursor:pointer
+  border-radius:5px;
+  background:#4FA3F7;
+  color:white;
+  font-size:16px;
 }
 .explanation{
-  margin-top:15px;
-  background:#f1f3f5;
-  padding:15px;
-  border-radius:10px;
-  display:none
+  display:none;
+  margin-top:10px;
+  color:#333;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h1>Eduplexo</h1>
-<p>SSC MCQ Practice</p>
-</header>
+<h2>রসায়ন – অধ্যায় ১ : রসায়নের ধারণা</h2>
 
-<main>
-<div class="timer">⏱ Time: <span id="time">30</span>s</div>
+<div class="mcq-box">
+<h3>রসায়ন কী নিয়ে আলোচনা করে?</h3>
 
-<h3 id="question"></h3>
+<button onclick="checkAnswer(this,false)">A. জীবনের উৎপত্তি</button>
+<button onclick="checkAnswer(this,true)">B. পদার্থের গঠন, ধর্ম ও পরিবর্তন</button>
+<button onclick="checkAnswer(this,false)">C. শক্তির রূপান্তর</button>
+<button onclick="checkAnswer(this,false)">D. মহাকাশ</button>
 
-<div id="options"></div>
-
-<div class="explanation" id="explanation"></div>
-
-<button onclick="nextQuestion()">Next Question</button>
-</main>
+<p class="explanation">
+✔ সঠিক উত্তর: B <br>
+রসায়ন হলো পদার্থের গঠন, ধর্ম ও পরিবর্তন নিয়ে বিজ্ঞান।
+</p>
+</div>
 
 <script>
-const questions = [
-  {
-    q: "আলোর বেগ কত?",
-    options: ["3×10⁶ m/s","3×10⁷ m/s","3×10⁸ m/s","3×10⁹ m/s"],
-    answer: 2,
-    exp: "শূন্য মাধ্যমে আলোর বেগ 3×10⁸ m/s।"
-  },
-  {
-    q: "পানির রাসায়নিক সংকেত কী?",
-    options: ["HO","H₂O","O₂","H₂"],
-    answer: 1,
-    exp: "পানির রাসায়নিক সংকেত H₂O।"
-  },
-  {
-    q: "বাংলাদেশের স্বাধীনতা দিবস কোনটি?",
-    options: ["16 Dec","21 Feb","26 Mar","7 Mar"],
-    answer: 2,
-    exp: "২৬ মার্চ বাংলাদেশের স্বাধীনতা দিবস।"
-  }
-];
-
-let index = 0;
-let score = 0;
-let time = 30;
-let timer;
-
-function loadQuestion(){
-  clearInterval(timer);
-  time = 30;
-  document.getElementById("time").innerText = time;
-
-  const q = questions[index];
-  document.getElementById("question").innerText = (index+1)+". "+q.q;
-
-  const optDiv = document.getElementById("options");
-  optDiv.innerHTML = "";
-
-  q.options.forEach((opt,i)=>{
-    const div = document.createElement("div");
-    div.className = "option";
-    div.innerText = opt;
-    div.onclick = ()=>checkAnswer(div,i);
-    optDiv.appendChild(div);
-  });
-
-  document.getElementById("explanation").style.display="none";
-
-  timer = setInterval(()=>{
-    time--;
-    document.getElementById("time").innerText=time;
-    if(time===0){
-      clearInterval(timer);
-      showCorrect();
-    }
-  },1000);
+function checkAnswer(btn, correct){
+  const box = btn.parentElement;
+  box.querySelectorAll("button").forEach(b => b.disabled = true);
+  btn.style.background = correct ? "#2ECC71" : "#E74C3C";
+  box.querySelector(".explanation").style.display = "block";
 }
-
-function checkAnswer(el,i){
-  clearInterval(timer);
-  const q = questions[index];
-  document.querySelectorAll(".option").forEach(o=>o.onclick=null);
-
-  if(i===q.answer){
-    el.classList.add("correct");
-    score++;
-  }else{
-    el.classList.add("wrong");
-    showCorrect();
-  }
-}
-
-function showCorrect(){
-  const q = questions[index];
-  document.querySelectorAll(".option")[q.answer].classList.add("correct");
-  document.getElementById("explanation").innerText="Explanation: "+q.exp;
-  document.getElementById("explanation").style.display="block";
-}
-
-function nextQuestion(){
-  index++;
-  if(index<questions.length){
-    loadQuestion();
-  }else{
-    document.querySelector("main").innerHTML =
-      `<h2>Exam Finished 🎉</h2>
-       <p>Score: ${score} / ${questions.length}</p>`;
-  }
-}
-
-loadQuestion();
 </script>
 
 </body>
