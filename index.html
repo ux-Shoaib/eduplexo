@@ -1,318 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
+  <meta charset="UTF-8">
   <title>Eduplexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+    .screen {
+      display: none;
+      padding: 30px 15px;
+      text-align: center;
+    }
+    .active {
+      display: block;
+    }
+    .card {
+      background: white;
+      max-width: 420px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 12px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 16px;
+    }
+    button {
+      background: #2ECC71;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #4FA3F7;
+    }
+    h3 {
+      margin-top: 25px;
+      color: #333;
+    }
+  </style>
 </head>
+
 <body>
-<!-- ===== HOME / FIRST VIEW SECTION ===== -->
-<div style="
-background: linear-gradient(180deg, #2ECC71, #4FA3F7);
-padding: 40px 20px;
-color: white;
-text-align: center;
-border-bottom-left-radius: 30px;
-border-bottom-right-radius: 30px;
-">
 
-  <h1 style="margin-bottom: 10px;">Eduplexo</h1>
-  <p style="font-size: 18px; margin-bottom: 25px;">
-    Class 9–10 Smart Learning Platform
-  </p>
+<!-- ===== SCREEN 1 : NAME + BATCH + GROUP ===== -->
+<div id="screen1" class="screen active">
+  <div class="card">
+    <h2>Eduplexo</h2>
+    <p>শুরু করতে তথ্য দাও</p>
 
-  <div style="background: white; color: #333; padding: 20px; border-radius: 15px; max-width: 400px; margin: auto;">
-    <h3>Get Started</h3>
+    <input type="text" id="name" placeholder="তোমার নাম">
 
-    <p><b>Select SSC Batch</b></p>
-    <select style="width: 100%; padding: 10px; margin-bottom: 15px;">
+    <select id="batch">
+      <option value="">SSC Batch নির্বাচন করো</option>
       <option>SSC 2026</option>
       <option>SSC 2027</option>
       <option>SSC 2028</option>
     </select>
 
-    <p><b>Select Group</b></p>
-    <select style="width: 100%; padding: 10px; margin-bottom: 20px;">
+    <select id="group">
+      <option value="">Group নির্বাচন করো</option>
       <option>Science</option>
       <option>Commerce</option>
       <option>Humanities</option>
     </select>
 
-    <button style="
-      width: 100%;
-      padding: 12px;
-      background: #2ECC71;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    ">
-      Continue
-    </button>
+    <button onclick="goToLogin()">Continue</button>
   </div>
-
-  <p style="margin-top: 25px; font-size: 14px;">
-    Scroll down to practice MCQ ⬇️
-  </p>
 </div>
 
-<hr>
-<h2>রসায়ন – অধ্যায় ১ : রসায়নের ধারণা</h2>
-
-<div class="mcq-box">
-<h3>1. রসায়ন কী নিয়ে আলোচনা করে?</h3>
-<button onclick="checkAnswer(this,false)">A. জীবনের উৎপত্তি</button>
-<button onclick="checkAnswer(this,true)">B. পদার্থের গঠন, ধর্ম ও পরিবর্তন</button>
-<button onclick="checkAnswer(this,false)">C. শক্তির রূপান্তর</button>
-<button onclick="checkAnswer(this,false)">D. মহাকাশ</button>
-<p class="explanation">✔ সঠিক উত্তর: B <br>রসায়ন পদার্থের গঠন, ধর্ম ও পরিবর্তন নিয়ে বিজ্ঞান।</p>
+<!-- ===== SCREEN 2 : LOGIN / SKIP ===== -->
+<div id="screen2" class="screen">
+  <div class="card">
+    <h2>Login অথবা Skip</h2>
+    <button onclick="goToSubjects()">Skip for now</button>
+  </div>
 </div>
 
-<div class="mcq-box">
-<h3>2. আধুনিক রসায়নের জনক কে?</h3>
-<button onclick="checkAnswer(this,false)">A. নিউটন</button>
-<button onclick="checkAnswer(this,false)">B. ডাল্টন</button>
-<button onclick="checkAnswer(this,true)">C. ল্যাভয়জিয়ে</button>
-<button onclick="checkAnswer(this,false)">D. আইনস্টাইন</button>
-<p class="explanation">✔ সঠিক উত্তর: C <br>ল্যাভয়জিয়ে আধুনিক রসায়নের জনক।</p>
+<!-- ===== SCREEN 3 : SUBJECT SELECTION ===== -->
+<div id="screen3" class="screen">
+  <div class="card">
+    <h2>বিষয় নির্বাচন করো</h2>
+    <div id="subjectList"></div>
+    <button class="secondary" onclick="backToLogin()">Back</button>
+  </div>
 </div>
 
-<div class="mcq-box">
-<h3>3. কোনটি ভৌত পরিবর্তন?</h3>
-<button onclick="checkAnswer(this,true)">A. বরফ গলা</button>
-<button onclick="checkAnswer(this,false)">B. কাগজ পোড়ানো</button>
-<button onclick="checkAnswer(this,false)">C. লোহা মরিচা ধরা</button>
-<button onclick="checkAnswer(this,false)">D. দুধ টক হওয়া</button>
-<p class="explanation">✔ সঠিক উত্তর: A <br>ভৌত পরিবর্তনে নতুন পদার্থ সৃষ্টি হয় না।</p>
+<!-- ===== SCREEN 4 : CHAPTER LIST ===== -->
+<div id="screen4" class="screen">
+  <div class="card">
+    <h2 id="chapterTitle"></h2>
+    <div id="chapterList"></div>
+    <button class="secondary" onclick="backToSubjects()">Back</button>
+  </div>
 </div>
 
-<div class="mcq-box">
-<h3>4. কোনটি রাসায়নিক পরিবর্তন?</h3>
-<button onclick="checkAnswer(this,false)">A. পানি ফুটানো</button>
-<button onclick="checkAnswer(this,true)">B. লোহা মরিচা ধরা</button>
-<button onclick="checkAnswer(this,false)">C. কাচ ভাঙা</button>
-<button onclick="checkAnswer(this,false)">D. চিনি গুঁড়ো করা</button>
-<p class="explanation">✔ সঠিক উত্তর: B <br>রাসায়নিক পরিবর্তনে নতুন পদার্থ তৈরি হয়।</p>
-</div>
+<script>
+  let userGroup = "";
 
-<div class="mcq-box">
-<h3>5. ভর সংরক্ষণ সূত্র প্রদান করেন—</h3>
-<button onclick="checkAnswer(this,true)">A. ল্যাভয়জিয়ে</button>
-<button onclick="checkAnswer(this,false)">B. ডাল্টন</button>
-<button onclick="checkAnswer(this,false)">C. বয়েল</button>
-<button onclick="checkAnswer(this,false)">D. অ্যাভোগাড্রো</button>
-<p class="explanation">✔ সঠিক উত্তর: A <br>ভর সংরক্ষণ সূত্র ল্যাভয়জিয়ে প্রদান করেন।</p>
-</div>
+  function goToLogin() {
+    userGroup = document.getElementById("group").value;
+    if (userGroup === "") {
+      alert("Group নির্বাচন করো");
+      return;
+    }
+    document.getElementById("screen1").classList.remove("active");
+    document.getElementById("screen2").classList.add("active");
+  }
 
-<div class="mcq-box">
-<h3>6. দাহ্যতা কোন ধরনের ধর্ম?</h3>
-<button onclick="checkAnswer(this,false)">A. ভৌত ধর্ম</button>
-<button onclick="checkAnswer(this,true)">B. রাসায়নিক ধর্ম</button>
-<button onclick="checkAnswer(this,false)">C. আণবিক ধর্ম</button>
-<button onclick="checkAnswer(this,false)">D. পারমাণবিক ধর্ম</button>
-<p class="explanation">✔ সঠিক উত্তর: B <br>দাহ্যতা রাসায়নিক ধর্ম।</p>
-</div>
+  function goToSubjects() {
+    document.getElementById("screen2").classList.remove("active");
+    document.getElementById("screen3").classList.add("active");
+    loadSubjects();
+  }
 
-<div class="mcq-box">
-<h3>7. কোনটি ভৌত ধর্ম?</h3>
-<button onclick="checkAnswer(this,true)">A. গলনাঙ্ক</button>
-<button onclick="checkAnswer(this,false)">B. জারণ</button>
-<button onclick="checkAnswer(this,false)">C. দাহ্যতা</button>
-<button onclick="checkAnswer(this,false)">D. বিক্রিয়াশীলতা</button>
-<p class="explanation">✔ সঠিক উত্তর: A <br>গলনাঙ্ক একটি ভৌত ধর্ম।</p>
-</div>
+  function backToLogin() {
+    document.getElementById("screen3").classList.remove("active");
+    document.getElementById("screen2").classList.add("active");
+  }
 
-<div class="mcq-box">
-<h3>8. জীবদেহের রাসায়নিক বিক্রিয়া নিয়ে কাজ করে—</h3>
-<button onclick="checkAnswer(this,true)">A. জীবরসায়ন</button>
-<button onclick="checkAnswer(this,false)">B. জৈব রসায়ন</button>
-<button onclick="checkAnswer(this,false)">C. অজৈব রসায়ন</button>
-<button onclick="checkAnswer(this,false)">D. ভৌত রসায়ন</button>
-<p class="explanation">✔ সঠিক উত্তর: A <br>জীবরসায়ন জীবদেহের রাসায়নিক প্রক্রিয়া নিয়ে কাজ করে।</p>
-</div>
+  function backToSubjects() {
+    document.getElementById("screen4").classList.remove("active");
+    document.getElementById("screen3").classList.add("active");
+  }
 
-<div class="mcq-box">
-<h3>9. কার্বন যৌগ নিয়ে আলোচনা করে—</h3>
-<button onclick="checkAnswer(this,true)">A. জৈব রসায়ন</button>
-<button onclick="checkAnswer(this,false)">B. অজৈব রসায়ন</button>
-<button onclick="checkAnswer(this,false)">C. ভৌত রসায়ন</button>
-<button onclick="checkAnswer(this,false)">D. নিউক্লিয়ার রসায়ন</button>
-<p class="explanation">✔ সঠিক উত্তর: A <br>কার্বন যৌগ নিয়ে জৈব রসায়ন আলোচনা করে।</p>
-</div>
+  function loadSubjects() {
+    const generalSubjects = [
+      "বাংলা ১ম পত্র",
+      "বাংলা ২য় পত্র",
+      "English 1st Paper",
+      "English 2nd Paper",
+      "General Mathematics",
+      "ICT"
+    ];
 
-<div class="mcq-box">
-<h3>10. রসায়নকে কেন্দ্রীয় বিজ্ঞান বলা হয় কেন?</h3>
-<button onclick="checkAnswer(this,true)">A. অন্যান্য বিজ্ঞানের সাথে সম্পর্ক আছে</button>
-<button onclick="checkAnswer(this,false)">B. শুধু পরীক্ষাগারে হয়</button>
-<button onclick="checkAnswer(this,false)">C. সহজ বিষয়</button>
-<button onclick="checkAnswer(this,false)">D. শুধু পদার্থ নিয়ে কাজ করে</button>
-<p class="explanation">✔ সঠিক উত্তর: A <br>রসায়নের সাথে অন্যান্য বিজ্ঞানের ঘনিষ্ঠ সম্পর্ক আছে।</p>
-</div>
+    const groupSubjects = {
+      Science: [
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "Higher Mathematics"
+      ],
+      Commerce: [
+        "Accounting",
+        "Finance & Banking",
+        "Business Entrepreneurship"
+      ],
+      Humanities: [
+        "History of Bangladesh & World Civilization",
+        "Civics & Citizenship",
+        "Geography & Environment",
+        "Economics"
+      ]
+    };
 
-<!-- 11–30 একই standard এ থাকবে -->
-<!-- তুমি চাইলে আমি next message এ 11–30 আবার এক block এ দিতে পারি -->
-<hr>
-<h3>অতিরিক্ত MCQ (১১–৩০)</h3>
+    let html = "<h3>General Subjects</h3>";
 
-<p><b>11. কোনটি রাসায়নিক পরিবর্তনের উদাহরণ?</b></p>
-<label>A. বরফ গলা</label><br>
-<label>B. পানি ফুটানো</label><br>
-<label>C. লোহা মরিচা ধরা</label><br>
-<label>D. কাগজ ছেঁড়া</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: লোহা মরিচা ধরলে নতুন পদার্থ তৈরি হয়।</p>
+    generalSubjects.forEach(sub => {
+      html += `<button onclick="openChapters('${sub}')">${sub}</button><br><br>`;
+    });
 
-<p><b>12. ভর সংরক্ষণ সূত্র প্রদান করেন কে?</b></p>
-<label>A. ল্যাভয়সিয়ে</label><br>
-<label>B. ডাল্টন</label><br>
-<label>C. নিউটন</label><br>
-<label>D. বয়েল</label><br>
-<p>✅ সঠিক উত্তর: A</p>
-<p>ব্যাখ্যা: ল্যাভয়সিয়ে ভর সংরক্ষণ সূত্র প্রদান করেন।</p>
+    html += "<h3>Group Subjects</h3>";
 
-<p><b>13. রসায়নের কোন শাখা জীবজগত নিয়ে আলোচনা করে?</b></p>
-<label>A. অজৈব রসায়ন</label><br>
-<label>B. জৈব রসায়ন</label><br>
-<label>C. জীবরসায়ন</label><br>
-<label>D. ভৌত রসায়ন</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: জীবরসায়ন জীবদেহের রাসায়নিক প্রক্রিয়া নিয়ে আলোচনা করে।</p>
+    groupSubjects[userGroup].forEach(sub => {
+      html += `<button onclick="openChapters('${sub}')">${sub}</button><br><br>`;
+    });
 
-<p><b>14. কোনটি ভৌত ধর্ম?</b></p>
-<label>A. দাহ্যতা</label><br>
-<label>B. রং</label><br>
-<label>C. বিক্রিয়াশীলতা</label><br>
-<label>D. জারণ</label><br>
-<p>✅ সঠিক উত্তর: B</p>
-<p>ব্যাখ্যা: রং পদার্থের একটি ভৌত ধর্ম।</p>
+    document.getElementById("subjectList").innerHTML = html;
+  }
 
-<p><b>15. কোনটি রাসায়নিক ধর্ম?</b></p>
-<label>A. গলনাঙ্ক</label><br>
-<label>B. স্ফুটনাঙ্ক</label><br>
-<label>C. দাহ্যতা</label><br>
-<label>D. ঘনত্ব</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: দাহ্যতা রাসায়নিক ধর্মের অন্তর্ভুক্ত।</p>
+  function openChapters(subject) {
+    document.getElementById("screen3").classList.remove("active");
+    document.getElementById("screen4").classList.add("active");
 
-<p><b>16. কোন বিজ্ঞানী পরমাণু তত্ত্ব প্রণয়ন করেন?</b></p>
-<label>A. ল্যাভয়সিয়ে</label><br>
-<label>B. ডাল্টন</label><br>
-<label>C. বয়েল</label><br>
-<label>D. রাদারফোর্ড</label><br>
-<p>✅ সঠিক উত্তর: B</p>
-<p>ব্যাখ্যা: জন ডাল্টন পরমাণু তত্ত্ব প্রণয়ন করেন।</p>
+    document.getElementById("chapterTitle").innerText = subject + " - Chapters";
 
-<p><b>17. কোনটি রসায়নের ব্যবহার?</b></p>
-<label>A. ঔষধ তৈরি</label><br>
-<label>B. খাদ্য সংরক্ষণ</label><br>
-<label>C. সার উৎপাদন</label><br>
-<label>D. সবগুলো</label><br>
-<p>✅ সঠিক উত্তর: D</p>
-<p>ব্যাখ্যা: রসায়ন ঔষধ, খাদ্য ও সার উৎপাদনে ব্যবহৃত হয়।</p>
+    document.getElementById("chapterList").innerHTML = `
+      <p>অধ্যায় ১</p>
+      <p>অধ্যায় ২</p>
+      <p>অধ্যায় ৩</p>
+      <p style="color:gray;">(MCQ পরে যোগ হবে)</p>
+    `;
+  }
+</script>
 
-<p><b>18. কোনটি নতুন পদার্থ সৃষ্টি করে না?</b></p>
-<label>A. দহন</label><br>
-<label>B. জারণ</label><br>
-<label>C. গলন</label><br>
-<label>D. বিক্রিয়া</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: গলন একটি ভৌত পরিবর্তন।</p>
-
-<p><b>19. রসায়ন কোন বিজ্ঞানের শাখা?</b></p>
-<label>A. ভৌত বিজ্ঞান</label><br>
-<label>B. জীব বিজ্ঞান</label><br>
-<label>C. সামাজিক বিজ্ঞান</label><br>
-<label>D. ভূগোল</label><br>
-<p>✅ সঠিক উত্তর: A</p>
-<p>ব্যাখ্যা: রসায়ন ভৌত বিজ্ঞানের একটি শাখা।</p>
-
-<p><b>20. রসায়নের মূল উদ্দেশ্য কী?</b></p>
-<label>A. পদার্থ বিশ্লেষণ</label><br>
-<label>B. পদার্থের পরিবর্তন বোঝা</label><br>
-<label>C. নতুন পদার্থ সৃষ্টি</label><br>
-<label>D. সবগুলো</label><br>
-<p>✅ সঠিক উত্তর: D</p>
-<p>ব্যাখ্যা: রসায়নের লক্ষ্য পদার্থ বিশ্লেষণ, পরিবর্তন ও নতুন পদার্থ সৃষ্টি।</p>
-
-<p><b>21–30:</b> (পরের ধাপে চাইলে আমি একই format এ দিয়ে দেবো)</p>
-<hr>
-<h3>MCQ 21–30</h3>
-
-<p><b>21. কোনটি রসায়নের মৌলিক ধারণার অন্তর্ভুক্ত?</b></p>
-<label>A. শক্তি</label><br>
-<label>B. পদার্থ</label><br>
-<label>C. জীব</label><br>
-<label>D. কোষ</label><br>
-<p>✅ সঠিক উত্তর: B</p>
-<p>ব্যাখ্যা: রসায়ন মূলত পদার্থ নিয়ে আলোচনা করে।</p>
-
-<p><b>22. কোনটি ভৌত পরিবর্তনের উদাহরণ?</b></p>
-<label>A. দুধ টক হওয়া</label><br>
-<label>B. লোহা মরিচা ধরা</label><br>
-<label>C. কাগজ পোড়ানো</label><br>
-<label>D. বরফ গলে পানি হওয়া</label><br>
-<p>✅ সঠিক উত্তর: D</p>
-<p>ব্যাখ্যা: বরফ গলে পানি হলে নতুন পদার্থ তৈরি হয় না।</p>
-
-<p><b>23. কোনটি রাসায়নিক পরিবর্তন?</b></p>
-<label>A. পানি জমা</label><br>
-<label>B. লবণ গলা</label><br>
-<label>C. কাঠ পোড়ানো</label><br>
-<label>D. কাচ ভাঙা</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: কাঠ পোড়ালে নতুন পদার্থ (ছাই, গ্যাস) তৈরি হয়।</p>
-
-<p><b>24. কোনটি রসায়নের ব্যবহার নয়?</b></p>
-<label>A. ঔষধ তৈরি</label><br>
-<label>B. সার উৎপাদন</label><br>
-<label>C. আবহাওয়া পূর্বাভাস</label><br>
-<label>D. প্লাস্টিক তৈরি</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: আবহাওয়া পূর্বাভাস মূলত পদার্থবিজ্ঞানের বিষয়।</p>
-
-<p><b>25. রসায়নে যে পরিবর্তনে নতুন পদার্থ সৃষ্টি হয় তাকে কী বলে?</b></p>
-<label>A. ভৌত পরিবর্তন</label><br>
-<label>B. রাসায়নিক পরিবর্তন</label><br>
-<label>C. অস্থায়ী পরিবর্তন</label><br>
-<label>D. প্রত্যাবর্তনীয় পরিবর্তন</label><br>
-<p>✅ সঠিক উত্তর: B</p>
-<p>ব্যাখ্যা: নতুন পদার্থ সৃষ্টি হলে তা রাসায়নিক পরিবর্তন।</p>
-
-<p><b>26. কোনটি রাসায়নিক ধর্মের উদাহরণ?</b></p>
-<label>A. রং</label><br>
-<label>B. গলনাঙ্ক</label><br>
-<label>C. দাহ্যতা</label><br>
-<label>D. ঘনত্ব</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: দাহ্যতা পদার্থের রাসায়নিক ধর্ম।</p>
-
-<p><b>27. কোন বিজ্ঞানী ভর সংরক্ষণ সূত্র আবিষ্কার করেন?</b></p>
-<label>A. ডাল্টন</label><br>
-<label>B. নিউটন</label><br>
-<label>C. ল্যাভয়সিয়ে</label><br>
-<label>D. বয়েল</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: ল্যাভয়সিয়ে ভর সংরক্ষণ সূত্র প্রদান করেন।</p>
-
-<p><b>28. রসায়নের কোন শাখা শিল্পকারখানায় বেশি ব্যবহৃত হয়?</b></p>
-<label>A. বিশ্লেষণাত্মক রসায়ন</label><br>
-<label>B. শিল্প রসায়ন</label><br>
-<label>C. জীবরসায়ন</label><br>
-<label>D. ভৌত রসায়ন</label><br>
-<p>✅ সঠিক উত্তর: B</p>
-<p>ব্যাখ্যা: শিল্প রসায়ন শিল্পক্ষেত্রে ব্যবহৃত হয়।</p>
-
-<p><b>29. কোনটি ভৌত ধর্ম?</b></p>
-<label>A. দাহ্যতা</label><br>
-<label>B. জারণ</label><br>
-<label>C. রং</label><br>
-<label>D. বিক্রিয়াশীলতা</label><br>
-<p>✅ সঠিক উত্তর: C</p>
-<p>ব্যাখ্যা: রং পদার্থের ভৌত ধর্ম।</p>
-
-<p><b>30. রসায়নের প্রধান লক্ষ্য কী?</b></p>
-<label>A. পদার্থ বিশ্লেষণ</label><br>
-<label>B. পদার্থের পরিবর্তন বোঝা</label><br>
-<label>C. নতুন পদার্থ তৈরি</label><br>
-<label>D. সবগুলো</label><br>
-<p>✅ সঠিক উত্তর: D</p>
-<p>ব্যাখ্যা: রসায়নের লক্ষ্য পদার্থ বিশ্লেষণ, পরিবর্তন ও নতুন পদার্থ সৃষ্টি।</p>
+</body>
+</html>
