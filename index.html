@@ -78,9 +78,36 @@ button:hover{opacity:.9}
   color:#fff;
 }
 </style>
+  .bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#fff;
+  display:flex;
+  justify-content:space-around;
+  border-top:1px solid #ddd;
+  padding:8px 0;
+  font-size:13px;
+}
+.bottom-nav div{
+  text-align:center;
+  color:#555;
+  cursor:pointer;
+}
+.bottom-nav div:hover{
+  color:#4FA3F7;
+}
 </head>
 
 <body>
+  <!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <div onclick="goHome()">🏠<br>Home</div>
+  <div onclick="goLeaderboard()">🏆<br>Leader</div>
+  <div onclick="goProgress()">📊<br>Progress</div>
+  <div onclick="goAccount()">👤<br>Account</div>
+</div>
 
 <header>Eduplexo</header>
 
@@ -145,6 +172,40 @@ button:hover{opacity:.9}
 </div>
 
 <script>
+  <script>
+function hideAll(){
+  stepName.classList.add("hidden");
+  stepBatch.classList.add("hidden");
+  stepGroup.classList.add("hidden");
+  stepLogin.classList.add("hidden");
+  stepSubjects.classList.add("hidden");
+  stepChapters.classList.add("hidden");
+}
+
+function goHome(){
+  hideAll();
+  stepSubjects.classList.remove("hidden");
+}
+
+function goLeaderboard(){
+  hideAll();
+  stepChapters.classList.remove("hidden");
+  chapterTitle.innerText="Leaderboard (Coming Soon)";
+}
+
+function goProgress(){
+  hideAll();
+  stepChapters.classList.remove("hidden");
+  chapterTitle.innerText="Your Progress (Coming Soon)";
+}
+
+function goAccount(){
+  hideAll();
+  stepChapters.classList.remove("hidden");
+  chapterTitle.innerText="Account & Coins (Coming Soon)";
+}
+</script>
+  
 const stepName = document.getElementById("step-name");
 const stepBatch = document.getElementById("step-batch");
 const stepGroup = document.getElementById("step-group");
