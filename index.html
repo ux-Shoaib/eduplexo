@@ -163,7 +163,11 @@
   }
 
   const savedGroup = localStorage.getItem("eduGroup");
-  if (savedGroup) filterSubjects(savedGroup);
+
+if (savedGroup) {
+  document.getElementById("groupSelect").value = savedGroup;
+  filterSubjects(savedGroup);
+}
 </script>
 
 </body>
