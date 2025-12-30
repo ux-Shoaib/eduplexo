@@ -1,71 +1,227 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Chemistry Chapter 1 – Eduplexo</title>
+<title>Chemistry Chapter 1 MCQ</title>
 
 <style>
 body{
-  font-family: Arial, sans-serif;
-  background:#f5f7fa;
+  margin:0;
+  font-family: 'Poppins','Noto Sans Bengali',sans-serif;
+  background: linear-gradient(180deg,#2ECC71 0%,#4FA3F7 100%);
+  min-height:100vh;
   padding:20px;
 }
-.mcq-box{
-  background:#fff;
-  border-radius:8px;
-  padding:15px;
-  margin-bottom:20px;
+
+.container{
+  max-width:800px;
+  margin:auto;
+  background:rgba(255,255,255,0.95);
+  padding:20px;
+  border-radius:16px;
 }
-button{
+
+h1{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.question{
+  margin-bottom:25px;
+}
+
+.options button{
+  display:block;
   width:100%;
+  margin:8px 0;
   padding:10px;
-  margin:5px 0;
   border:none;
-  border-radius:5px;
-  background:#4FA3F7;
-  color:white;
-  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+  background:#ecf0f1;
+  font-size:15px;
 }
+
+.options button:hover{
+  background:#dfe6e9;
+}
+
+.correct{
+  background:#2ecc71 !important;
+  color:#fff;
+}
+
+.wrong{
+  background:#e74c3c !important;
+  color:#fff;
+}
+
 .explanation{
+  margin-top:8px;
+  font-size:14px;
   display:none;
-  margin-top:10px;
-  color:#333;
-}
-a{
-  display:inline-block;
-  margin-bottom:15px;
-  text-decoration:none;
-  color:#2ECC71;
 }
 </style>
 </head>
 
 <body>
 
-<a href="index.html">⬅ Back to Home</a>
+<div class="container">
+<h1>Chemistry – Chapter 1 MCQ</h1>
 
-<h2>রসায়ন – অধ্যায় ১ : রসায়নের ধারণা</h2>
+<!-- MCQ 1 -->
+<div class="question">
+<p><b>1. পদার্থের ক্ষুদ্রতম কণাকে কী বলে?</b></p>
+<div class="options">
+<button onclick="check(this,false,'exp1')">A. অণু</button>
+<button onclick="check(this,true,'exp1')">B. পরমাণু</button>
+<button onclick="check(this,false,'exp1')">C. যৌগ</button>
+<button onclick="check(this,false,'exp1')">D. মিশ্রণ</button>
+</div>
+<div id="exp1" class="explanation">
+সঠিক উত্তর: পরমাণু। পরমাণু হলো কোনো মৌলের ক্ষুদ্রতম কণা।
+</div>
+</div>
 
-<div class="mcq-box">
-<h3>রসায়ন কী নিয়ে আলোচনা করে?</h3>
+<!-- MCQ 2 -->
+<div class="question">
+<p><b>2. কঠিন পদার্থের কণাগুলোর মধ্যে কী বেশি থাকে?</b></p>
+<div class="options">
+<button onclick="check(this,true,'exp2')">A. আকর্ষণ বল</button>
+<button onclick="check(this,false,'exp2')">B. ফাঁকা স্থান</button>
+<button onclick="check(this,false,'exp2')">C. গতিশক্তি</button>
+<button onclick="check(this,false,'exp2')">D. চাপ</button>
+</div>
+<div id="exp2" class="explanation">
+কঠিন পদার্থে কণাগুলোর মধ্যে আকর্ষণ বল সবচেয়ে বেশি থাকে।
+</div>
+</div>
 
-<button onclick="checkAnswer(this,false)">A. জীবনের উৎপত্তি</button>
-<button onclick="checkAnswer(this,true)">B. পদার্থের গঠন, ধর্ম ও পরিবর্তন</button>
-<button onclick="checkAnswer(this,false)">C. শক্তির রূপান্তর</button>
-<button onclick="checkAnswer(this,false)">D. মহাকাশ</button>
+<!-- MCQ 3 -->
+<div class="question">
+<p><b>3. কোন অবস্থায় পদার্থের আকার নির্দিষ্ট কিন্তু আয়তন অনির্দিষ্ট?</b></p>
+<div class="options">
+<button onclick="check(this,false,'exp3')">A. কঠিন</button>
+<button onclick="check(this,true,'exp3')">B. তরল</button>
+<button onclick="check(this,false,'exp3')">C. গ্যাস</button>
+<button onclick="check(this,false,'exp3')">D. প্লাজমা</button>
+</div>
+<div id="exp3" class="explanation">
+তরলের আয়তন নির্দিষ্ট কিন্তু আকার পাত্র অনুযায়ী পরিবর্তিত হয়।
+</div>
+</div>
 
-<p class="explanation">
-✔ সঠিক উত্তর: B <br>
-রসায়ন হলো পদার্থের গঠন, ধর্ম ও পরিবর্তন নিয়ে বিজ্ঞান।
-</p>
+<!-- MCQ 4 -->
+<div class="question">
+<p><b>4. কোনটি মৌল?</b></p>
+<div class="options">
+<button onclick="check(this,false,'exp4')">A. পানি</button>
+<button onclick="check(this,true,'exp4')">B. অক্সিজেন</button>
+<button onclick="check(this,false,'exp4')">C. লবণ</button>
+<button onclick="check(this,false,'exp4')">D. চিনি</button>
+</div>
+<div id="exp4" class="explanation">
+অক্সিজেন একটি মৌল, কারণ এটি এক ধরনের পরমাণু দিয়ে গঠিত।
+</div>
+</div>
+
+<!-- MCQ 5 -->
+<div class="question">
+<p><b>5. গ্যাসের কণাগুলোর বৈশিষ্ট্য কোনটি?</b></p>
+<div class="options">
+<button onclick="check(this,false,'exp5')">A. কাছাকাছি থাকে</button>
+<button onclick="check(this,false,'exp5')">B. কম গতিশক্তি</button>
+<button onclick="check(this,true,'exp5')">C. বেশি ফাঁকা স্থান</button>
+<button onclick="check(this,false,'exp5')">D. নির্দিষ্ট আকার</button>
+</div>
+<div id="exp5" class="explanation">
+গ্যাসে কণাগুলোর মধ্যে অনেক ফাঁকা স্থান থাকে।
+</div>
+</div>
+
+<!-- MCQ 6 -->
+<div class="question">
+<p><b>6. পদার্থের কোন অবস্থায় কণাগুলো সবচেয়ে দ্রুত চলে?</b></p>
+<div class="options">
+<button onclick="check(this,false,'exp6')">A. কঠিন</button>
+<button onclick="check(this,false,'exp6')">B. তরল</button>
+<button onclick="check(this,true,'exp6')">C. গ্যাস</button>
+<button onclick="check(this,false,'exp6')">D. দ্রবণ</button>
+</div>
+<div id="exp6" class="explanation">
+গ্যাস অবস্থায় কণাগুলোর গতিশক্তি সবচেয়ে বেশি।
+</div>
+</div>
+
+<!-- MCQ 7 -->
+<div class="question">
+<p><b>7. কোনটি যৌগ?</b></p>
+<div class="options">
+<button onclick="check(this,true,'exp7')">A. পানি</button>
+<button onclick="check(this,false,'exp7')">B. লোহা</button>
+<button onclick="check(this,false,'exp7')">C. অক্সিজেন</button>
+<button onclick="check(this,false,'exp7')">D. সোনা</button>
+</div>
+<div id="exp7" class="explanation">
+পানি একটি যৌগ কারণ এটি হাইড্রোজেন ও অক্সিজেন দিয়ে গঠিত।
+</div>
+</div>
+
+<!-- MCQ 8 -->
+<div class="question">
+<p><b>8. কোন পরিবর্তনটি ভৌত পরিবর্তন?</b></p>
+<div class="options">
+<button onclick="check(this,true,'exp8')">A. বরফ গলে পানি হওয়া</button>
+<button onclick="check(this,false,'exp8')">B. লোহা মরিচা পড়া</button>
+<button onclick="check(this,false,'exp8')">C. কাগজ পুড়ে যাওয়া</button>
+<button onclick="check(this,false,'exp8')">D. দুধ টক হওয়া</button>
+</div>
+<div id="exp8" class="explanation">
+বরফ গলে পানি হওয়া ভৌত পরিবর্তন।
+</div>
+</div>
+
+<!-- MCQ 9 -->
+<div class="question">
+<p><b>9. তরল পদার্থের একটি বৈশিষ্ট্য কোনটি?</b></p>
+<div class="options">
+<button onclick="check(this,true,'exp9')">A. আয়তন নির্দিষ্ট</button>
+<button onclick="check(this,false,'exp9')">B. আকার নির্দিষ্ট</button>
+<button onclick="check(this,false,'exp9')">C. সহজে সংকুচিত</button>
+<button onclick="check(this,false,'exp9')">D. কণা দূরে থাকে</button>
+</div>
+<div id="exp9" class="explanation">
+তরলের আয়তন নির্দিষ্ট কিন্তু আকার নয়।
+</div>
+</div>
+
+<!-- MCQ 10 -->
+<div class="question">
+<p><b>10. কোনটি মিশ্রণ?</b></p>
+<div class="options">
+<button onclick="check(this,true,'exp10')">A. বায়ু</button>
+<button onclick="check(this,false,'exp10')">B. পানি</button>
+<button onclick="check(this,false,'exp10')">C. অক্সিজেন</button>
+<button onclick="check(this,false,'exp10')">D. সোনা</button>
+</div>
+<div id="exp10" class="explanation">
+বায়ু বিভিন্ন গ্যাসের মিশ্রণ।
+</div>
+</div>
+
 </div>
 
 <script>
-function checkAnswer(btn, correct){
-  const box = btn.parentElement;
-  box.querySelectorAll("button").forEach(b => b.disabled = true);
-  btn.style.background = correct ? "#2ECC71" : "#E74C3C";
-  box.querySelector(".explanation").style.display = "block";
+function check(btn,correct,expId){
+  const buttons = btn.parentElement.querySelectorAll('button');
+  buttons.forEach(b=>b.disabled=true);
+
+  if(correct){
+    btn.classList.add('correct');
+  }else{
+    btn.classList.add('wrong');
+    document.getElementById(expId).style.display='block';
+  }
 }
 </script>
 
